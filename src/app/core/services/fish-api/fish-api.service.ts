@@ -40,7 +40,7 @@ export class FishApiService {
     return this.http.get<Fish[]>(`${this.url}`).subscribe(
       (s) => this.fishSubject.next(s),
       (err) => {
-        this.logger.error(`FishService.update: Unable to retrieve the fish list due to `, err);
+        this.logger.error(`FishApiService.update: Unable to retrieve the fish list due to `, err);
         this.fishSubject.next(err);
       }
     );
