@@ -20,7 +20,7 @@ export class TimeOptionsService {
    * Observable created from BehaviorSubject of the time option
    */
   /* istanbul ignore next */
-  get option(): Observable<TimeOption> {
+  option(): Observable<TimeOption> {
     return this.optionsCache.pipe(map((o) => (!o ? new TimeOption() : { ...o })));
   }
 
@@ -28,7 +28,7 @@ export class TimeOptionsService {
    * Retrieve the current time option from the BehaviorSubject
    */
   /* istanbul ignore next */
-  get currentOption(): TimeOption {
+  currentOption(): TimeOption {
     let option = this.optionsSubject.getValue();
     option = !option ? new TimeOption() : { ...option };
     return option;
