@@ -21,7 +21,7 @@ describe('TimeOptionService', () => {
     it('should update to the provided default option', (done) => {
       const expected = new TimeOption();
       service.update(expected);
-      service.option.subscribe(
+      service.option().subscribe(
         (actual) => {
           expect(actual.month).toEqual(expected.month);
           expect(actual.isAll).toEqual(expected.isAll);
@@ -34,7 +34,7 @@ describe('TimeOptionService', () => {
     it('should update to the provided option', (done) => {
       const expected = new TimeOption(faker.random.number());
       service.update(expected);
-      service.option.subscribe(
+      service.option().subscribe(
         (actual) => {
           expect(actual.month).toEqual(expected.month);
           expect(actual.isAll).toEqual(expected.isAll);
