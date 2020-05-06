@@ -10,7 +10,7 @@ export default class TimeOption {
   month: number;
 
   constructor(month?: number, isAll: boolean = false, isNorth: boolean = true) {
-    this.month = !month ? new Date().getMonth() : month;
+    this.month = !month ? new Date().getMonth() + 1 : month;
     this.isAll = isAll;
     this.isNorth = isNorth;
   }
