@@ -15,15 +15,12 @@ import { CritterMappingService } from '../core/services/critter-mapping/critter-
 })
 export class FishTableComponent implements OnInit, OnDestroy {
   private fishSubscription: Subscription;
-
   columnsToDisplay = ['name', 'shadowSize', 'location', 'time', 'price', 'month'];
   dataSource: MatTableDataSource<Fish>;
   fishError: string;
-  loading: boolean;
 
   constructor(private logger: NGXLogger, private fishService: FishService, private utilService: CritterMappingService) {
     this.fishError = 'Loading fish information';
-    this.loading = true;
     this.dataSource = new MatTableDataSource([]);
   }
 
@@ -85,6 +82,5 @@ export class FishTableComponent implements OnInit, OnDestroy {
       this.dataSource.data = data;
       this.fishError = data.length > 0 ? '' : 'No fishes to display';
     }
-    this.loading = false;
   }
 }

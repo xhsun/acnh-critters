@@ -4,11 +4,17 @@ table {
 }
 .mat-form-field {
   min-width: 99%;
-  padding: 0.2em 0.5%;
+  margin: 0.2em 0.5%;
 }
 mat-icon {
   font-size: 1em;
   cursor: default;
   color: lightcoral;
   height: 0;
+}
+
+.error {
+  margin-top: 1em;
+  text-align: center;
+  color: darkgray;
 }
