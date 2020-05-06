@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { BugTableComponent } from './bug-table/bug-table.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent],
@@ -26,6 +28,8 @@ import { BugTableComponent } from './bug-table/bug-table.component';
     MatIconModule,
     MatTooltipModule,
     MatInputModule,
+    MatTabsModule,
+    MatToolbarModule,
     HttpClientModule,
     LoggerModule.forRoot({
       level: environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,
