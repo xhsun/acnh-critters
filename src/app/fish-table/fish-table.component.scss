@@ -1,3 +1,14 @@
 table {
-  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+.mat-form-field {
+  min-width: 99%;
+  padding: 0.2em 0.5%;
+}
+mat-icon {
+  font-size: 1em;
+  cursor: default;
+  color: lightcoral;
+  height: 0;
 }

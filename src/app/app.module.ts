@@ -11,6 +11,9 @@ import { MonthStringPipe } from './core/month-string/month-string.pipe';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, FishTableComponent, MonthStringPipe],
@@ -19,6 +22,9 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatInputModule,
     HttpClientModule,
     LoggerModule.forRoot({
       level: environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,

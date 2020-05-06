@@ -5,10 +5,8 @@ import { Subscription } from 'rxjs';
 import { Fish } from '../core/models/fish.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
-import { TimeOptionsService } from '../core/services/time-options/time-options.service';
-import TimeOption from '../core/models/time-option.model';
+import { CritterMappingService } from '../core/services/critter-mapping/critter-mapping.service';
 
 @Component({
   selector: 'app-fish-table',
@@ -17,31 +15,35 @@ import TimeOption from '../core/models/time-option.model';
 })
 export class FishTableComponent implements OnInit, OnDestroy {
   private fishSubscription: Subscription;
-  private optionsSubscription: Subscription;
-  currentOptions: TimeOption;
 
   columnsToDisplay = ['name', 'shadowSize', 'location', 'time', 'price', 'month'];
+  dataSource: MatTableDataSource<Fish>;
   fishError: string;
   loading: boolean;
-  selection: SelectionModel<Fish>;
-  dataSource: MatTableDataSource<Fish>;
 
-  constructor(private logger: NGXLogger, private fishService: FishService, private optionService: TimeOptionsService) {
+  constructor(private logger: NGXLogger, private fishService: FishService, private utilService: CritterMappingService) {
     this.fishError = 'Loading fish information';
     this.loading = true;
-    this.selection = new SelectionModel<Fish>(true, []);
     this.dataSource = new MatTableDataSource([]);
   }
 
+  /**
+   * Set MatSort for the table
+   */
+  /* istanbul ignore next */
+  @ViewChild(MatSort, { static: false })
+  set sort(sort: MatSort) {
+    this.dataSource.sort = sort;
+  }
+
   ngOnInit(): void {
-    this.optionsSubscription = this.optionService.option().subscribe((o) => (this.currentOptions = o));
     this.fishSubscription = this.fishService.fish().subscribe((f) => this.updateFish(f));
     this.dataSource.sortingDataAccessor = (data: Fish, sortHeaderId: string) => {
       switch (sortHeaderId) {
         case 'time':
-          return this.convertTimeStringToNumber(data.time);
+          return this.utilService.convertTimeStringToNumber(data.time);
         case 'month':
-          return this.currentOptions.isNorth ? data.month.north : data.month.south;
+          return this.utilService.getMonthArray(data.month);
         default:
           return data[sortHeaderId];
       }
@@ -49,22 +51,26 @@ export class FishTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.optionsSubscription.unsubscribe();
     this.fishSubscription.unsubscribe();
   }
 
-  @ViewChild(MatSort, { static: false })
-  set sort(sort: MatSort) {
-    this.dataSource.sort = sort;
+  /**
+   * Set table filter using the given filter string, default to empty string
+   * @param value Input filter string
+   */
+  /* istanbul ignore next */
+  filter(value: string = '') {
+    this.dataSource.filter = value;
   }
 
-  convertTimeStringToNumber(time: string) {
-    const token = time.split(' ');
-    const hour = +token[0];
-    if (token.indexOf('-') < 0) {
-      return 24;
-    }
-    return token[1].toUpperCase() === 'PM' ? hour + 12 : hour;
+  /**
+   * Check if this month is the last chance to catch the given fish
+   *
+   * @param value Information used to check if the fish is available next month
+   */
+  /* istanbul ignore next */
+  isLastChance(value: Fish) {
+    return this.utilService.availableNextMonth(value.month);
   }
 
   /**
@@ -76,7 +82,6 @@ export class FishTableComponent implements OnInit, OnDestroy {
       this.fishError = 'Unable to load any information, please refresh the page to try again';
     } else {
       this.logger.debug(`FishTableComponent.updateFish: Update fish list to`, data);
-      this.selection.clear();
       this.dataSource.data = data;
       this.fishError = data.length > 0 ? '' : 'No fishes to display';
     }
