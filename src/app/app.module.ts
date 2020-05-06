@@ -14,9 +14,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
+import { BugTableComponent } from './bug-table/bug-table.component';
 
 @NgModule({
-  declarations: [AppComponent, FishTableComponent, MonthStringPipe],
+  declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
