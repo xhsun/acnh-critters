@@ -31,7 +31,7 @@
 
     <ng-container matColumnDef="month">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
-      <td mat-cell *matCellDef="let bug">{{ bug.month | monthString }}</td>
+      <td mat-cell *matCellDef="let bug">{{ this.monthArray(bug) | monthString }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>

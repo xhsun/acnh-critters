@@ -40,7 +40,7 @@ export class BugTableComponent implements OnInit, OnDestroy {
         case 'time':
           return this.utilService.convertTimeStringToNumber(data.time);
         case 'month':
-          return this.utilService.getMonthArray(data.month);
+          return this.monthArray(data);
         default:
           return data[sortHeaderId];
       }
@@ -49,6 +49,15 @@ export class BugTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.bugSubscription.unsubscribe();
+  }
+
+  /**
+   * Get month array of the given bug info
+   * @param bug Information used to extract correct month array
+   */
+  /* istanbul ignore next */
+  monthArray(bug: Bug) {
+    return this.utilService.getMonthArray(bug.month);
   }
 
   /**

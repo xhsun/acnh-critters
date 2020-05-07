@@ -40,7 +40,7 @@ export class FishTableComponent implements OnInit, OnDestroy {
         case 'time':
           return this.utilService.convertTimeStringToNumber(data.time);
         case 'month':
-          return this.utilService.getMonthArray(data.month);
+          return this.monthArray(data);
         default:
           return data[sortHeaderId];
       }
@@ -58,6 +58,15 @@ export class FishTableComponent implements OnInit, OnDestroy {
   /* istanbul ignore next */
   filter(value: string = '') {
     this.dataSource.filter = value;
+  }
+
+  /**
+   * Get month array of the given fish info
+   * @param fish Information used to extract correct month array
+   */
+  /* istanbul ignore next */
+  monthArray(fish: Fish) {
+    return this.utilService.getMonthArray(fish.month);
   }
 
   /**

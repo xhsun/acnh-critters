@@ -28,10 +28,12 @@ describe('BugTableComponent', () => {
     detectChanges: false,
   });
   let mockApi: SpyObject<BugService>;
+  let mockUtil: SpyObject<CritterMappingService>;
 
   beforeEach(() => {
     spectator = createComponent();
     mockApi = spectator.inject(BugService);
+    mockUtil = spectator.inject(CritterMappingService);
     component = spectator.component;
   });
 
@@ -39,6 +41,7 @@ describe('BugTableComponent', () => {
     it('should update data source with bug info', fakeAsync(() => {
       const input = [{ name: faker.random.word(), month: { north: [], south: [] } as Month } as Bug];
       mockApi.bug.and.returnValue(of(input));
+      mockUtil.getMonthArray.and.returnValue([]);
       spectator.detectChanges();
       expect(component.dataSource.data).toEqual(input);
     }));

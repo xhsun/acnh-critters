@@ -1,23 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Month } from '../models/month.model';
 import { DatePipe } from '@angular/common';
-import { TimeOptionsService } from '../services/time-options/time-options.service';
 
 @Pipe({
   name: 'monthString',
 })
 export class MonthStringPipe implements PipeTransform {
-  constructor(private datePipe: DatePipe, private optionService: TimeOptionsService) {}
+  constructor(private datePipe: DatePipe) {}
 
   /**
    * Transform the given month to its string representation
    * @param value Month
    */
-  transform(value: Month): string {
-    const options = this.optionService.currentOption();
-
+  transform(value: number[]): string {
     // Group month into consecutive months
-    const month = (options.isNorth ? value.north : value.south).reduce((p, c) => {
+    const month = value.reduce((p, c) => {
       const previousGroup = p[p.length - 1];
       if (!previousGroup || previousGroup[previousGroup.length - 1] !== c - 1) {
         p.push([]);
