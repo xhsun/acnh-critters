@@ -27,10 +27,12 @@ describe('FishTableComponent', () => {
     detectChanges: false,
   });
   let mockApi: SpyObject<FishService>;
+  let mockUtil: SpyObject<CritterMappingService>;
 
   beforeEach(() => {
     spectator = createComponent();
     mockApi = spectator.inject(FishService);
+    mockUtil = spectator.inject(CritterMappingService);
     component = spectator.component;
   });
 
@@ -38,6 +40,7 @@ describe('FishTableComponent', () => {
     it('should update data source with fish info', fakeAsync(() => {
       const input = [{ name: faker.random.word(), month: { north: [], south: [] } as Month } as Fish];
       mockApi.fish.and.returnValue(of(input));
+      mockUtil.getMonthArray.and.returnValue([]);
       spectator.detectChanges();
       expect(component.dataSource.data).toEqual(input);
     }));
