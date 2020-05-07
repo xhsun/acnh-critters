@@ -17,9 +17,12 @@ import { MatInputModule } from '@angular/material/input';
 import { BugTableComponent } from './bug-table/bug-table.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderComponent } from './header/header.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
-  declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent],
+  declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -30,6 +33,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatTabsModule,
     MatToolbarModule,
+    MatSelectModule,
+    MatButtonToggleModule,
     HttpClientModule,
     LoggerModule.forRoot({
       level: environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,

@@ -1,0 +1,32 @@
+.mat-toolbar {
+  img {
+    height: 3em;
+    margin-right: 0.5em;
+  }
+
+  .fill-space-between {
+    flex: 1 1 auto;
+  }
+
+  .mat-button-toggle-group {
+    .mat-button-toggle-appearance-standard {
+      font-size: 10pt;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .mat-button-toggle-checked {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .mat-button-toggle-appearance-standard:not(.mat-button-toggle-checked) {
+      background-color: transparent;
+    }
+  }
+
+  .mat-form-field {
+    font-size: 10pt;
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: 1em;
+    margin-right: 1em;
+  }
+}
