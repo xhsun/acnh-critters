@@ -1,27 +1,30 @@
-# AcnhCritters
+# Animal Crossing New Horizons Critterpedia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+![Deployment](https://github.com/xhsun/acnh-critters/workflows/Deployment/badge.svg)
 
-## Development server
+This is a companion web app for Animal Crossing: New Horizons. Main purpose of this application is to show people what is available to catch for the selected month, default to current month, and which critter will be leaving soon.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Change Hemisphere](https://i.imgur.com/jWPGJo2.gif)
 
-## Code scaffolding
+_Note: The critter information are extracted from [Animal Crossing Wiki](https://animalcrossing.fandom.com/wiki/Animal_Crossing_Wiki) and then hosted on GitHub Pages as a static REST API (check out [the repository](https://github.com/xhsun/acnh-api))._
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Run the project locally
 
-## Build
+Since this application is an [Angular](https://angular.io/) application, make sure you have [Node.js](https://nodejs.org/en/) version 12+ installed in your machine. Then run `npm install` to install all the necessary packages. Once all packages are installed, run `npm start` for the dev server, which will be available at `http://localhost:4200/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Contributing
 
-## Running unit tests
+If you find anything that is not working as it should be, please don't hesitate to open an issue in the issue tracker.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+_Note: When reporting an issue, please include what you've done that lead to the issue._
 
-## Running end-to-end tests
+Or, if you feel like it, you can always fork and try to fix it yourself.
+Somethings to know when contributing code:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Try to adhere to the current code style of this project
 
-## Further help
+- Try to run some testes to make sure you didn't accidentally break anything before creating a pull request
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- It would help me to review your code if you tell me what you are trying to do in the pull request
+
+I really do appreciate your effort to help me to improve this project!
