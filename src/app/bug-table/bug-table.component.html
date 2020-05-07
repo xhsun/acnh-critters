@@ -1,0 +1,44 @@
+<div *ngIf="this.bugError.length < 1 && this.dataSource.data.length > 0; else error_message">
+  <mat-form-field class="search-table-form">
+    <mat-label>Search table</mat-label>
+    <input matInput (keyup)="this.filter($event.target.value)" placeholder="Common Butterfly" />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let bug">
+        {{ bug.name }}
+        <mat-icon class="leaving-soon-icon" *ngIf="this.isLastChance(bug)" matTooltip="Not available next month">
+          new_releases
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+      <td mat-cell *matCellDef="let bug">{{ bug.location }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+      <td mat-cell *matCellDef="let bug">{{ bug.time }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let bug">{{ bug.price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="month">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
+      <td mat-cell *matCellDef="let bug">{{ this.monthArray(bug) | monthString }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+  </table>
+</div>
+
+<ng-template #error_message>
+  <p class="error">{{ this.bugError }}</p>
+</ng-template>
