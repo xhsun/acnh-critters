@@ -110,8 +110,9 @@
       }
     }
   },
-  "defaultProject": "acnh-critters",
   "cli": {
-    "defaultCollection": "@ngneat/spectator"
+    "schematicCollections": [
+      "@ngneat/spectator"
+    ]
   }
 }
