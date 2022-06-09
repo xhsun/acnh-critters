@@ -2,7 +2,7 @@ import { createServiceFactory, SpectatorService, SpyObject } from '@ngneat/spect
 import { CritterMappingService } from './critter-mapping.service';
 import { TimeOptionsService } from '../time-options/time-options.service';
 import TimeOption from '../../models/time-option.model';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { Month } from '../../models/month.model';
 
 describe('CreatureMappingService', () => {
@@ -22,7 +22,7 @@ describe('CreatureMappingService', () => {
 
   describe('getMonthArray', () => {
     it('should return correct month array', () => {
-      const inputOptions = new TimeOption(faker.random.number(), false, false);
+      const inputOptions = new TimeOption(faker.datatype.number(), false, false);
       const expected = [1, 2, 5, 7];
       const inputMonth = { north: [], south: expected } as Month;
 
@@ -35,7 +35,7 @@ describe('CreatureMappingService', () => {
 
   describe('availableNextMonth', () => {
     it('should return false when isAll flag is set', () => {
-      const inputOptions = new TimeOption(faker.random.number(), true);
+      const inputOptions = new TimeOption(faker.datatype.number(), true);
       const inputMonth = {} as Month;
 
       mockOptions.currentOption.and.returnValue(inputOptions);
@@ -71,7 +71,7 @@ describe('CreatureMappingService', () => {
     });
 
     it('should return correct time number', () => {
-      const input = faker.random.number({ min: 1, max: 11 });
+      const input = faker.datatype.number({ min: 1, max: 11 });
       const inputStr = `${input} pm`;
 
       const expected = input + 12;

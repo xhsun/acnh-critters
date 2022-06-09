@@ -1,7 +1,7 @@
 import { Spectator, createComponentFactory, SpyObject } from '@ngneat/spectator';
 
 import { BugTableComponent } from './bug-table.component';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';

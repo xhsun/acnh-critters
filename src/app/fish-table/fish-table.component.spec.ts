@@ -1,6 +1,6 @@
 import { Spectator, createComponentFactory, SpyObject } from '@ngneat/spectator';
 import { FishTableComponent } from './fish-table.component';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { MonthStringPipe } from '../core/month-string/month-string.pipe';
 import { MatTableModule } from '@angular/material/table';

@@ -1,6 +1,6 @@
 import { SpectatorService, createServiceFactory, SpyObject } from '@ngneat/spectator';
 import { FishService } from './fish.service';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { Fish } from '../../models/fish.model';
 import { TimeOptionsService } from '../time-options/time-options.service';
@@ -29,7 +29,7 @@ describe('FishService', () => {
 
   describe('fish', () => {
     it('should set options subscription', (done) => {
-      const inputOptions = new TimeOption(faker.random.number(), true);
+      const inputOptions = new TimeOption(faker.datatype.number(), true);
       const expected = [{ name: faker.random.word() } as Fish];
 
       mockOptions.option.and.returnValue(of(inputOptions));
@@ -47,7 +47,7 @@ describe('FishService', () => {
 
   describe('refresh', () => {
     it('should provide full fish list when flag isAll is set', (done) => {
-      const inputOptions = new TimeOption(faker.random.number(), true);
+      const inputOptions = new TimeOption(faker.datatype.number(), true);
       const expected = [{ name: faker.random.word() } as Fish];
 
       mockOptions.option.and.returnValue(NEVER);
@@ -65,7 +65,7 @@ describe('FishService', () => {
     });
 
     it('should provide fish with correct month', (done) => {
-      const inputMonth = faker.random.number();
+      const inputMonth = faker.datatype.number();
       const inputOptions = new TimeOption(inputMonth);
       const expected = [
         { name: faker.random.word(), month: { north: [inputMonth] } as Month } as Fish,

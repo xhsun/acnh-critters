@@ -1,7 +1,7 @@
 import { createHttpFactory, HttpMethod, SpectatorHttp } from '@ngneat/spectator';
 import { BugApiService } from './bug-api.service';
 import { BUG_URL } from '../../injection-tokens.store';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Bug } from '../../models/bug.model';
