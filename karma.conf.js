@@ -16,10 +16,14 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: require('path').join(__dirname, './coverage/acnh-critters'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      reporters: [
+        { type: 'html', subdir: '.' },
+        { type: 'lcovonly', subdir: '.' },
+        { type: 'text-summary' }
+      ],
+      fixWebpackSourcePaths: true,
     },
     sonarQubeUnitReporter: {
       sonarQubeVersion: 'LATEST',
@@ -29,7 +33,7 @@ module.exports = function (config) {
       testFilePattern: '.spec.ts',
       useBrowserName: false,
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'sonarqubeUnit', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -38,14 +42,6 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true
   };
-
-  if (process.env.CI) {
-    // Prepare test results for SonarQube
-    options.reporters.push('sonarqubeUnit');
-  } else {
-    // Show the test results on Karma's debug.html page when running locally
-    options.reporters.push('kjhtml');
-  }
 
   config.set(options);
 };
