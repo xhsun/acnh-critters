@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FISH_URL, BUG_URL } from './core/injection-tokens.store';
+import { FISH_URL, BUG_URL, DEEP_SEA_URL } from './core/injection-tokens.store';
 import { FishTableComponent } from './fish-table/fish-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MonthStringPipe } from './core/month-string/month-string.pipe';
@@ -45,6 +45,7 @@ import { DatePipe } from '@angular/common';
     DatePipe,
     { provide: FISH_URL, useValue: 'https://www.xhsun.me/acnh-api/data/v1/fish.json' },
     { provide: BUG_URL, useValue: 'https://www.xhsun.me/acnh-api/data/v1/bug.json' },
+    { provide: DEEP_SEA_URL, useValue: 'https://www.xhsun.me/acnh-api/data/v1/deepSeaCreatures.json' },
   ],
   bootstrap: [AppComponent],
 })

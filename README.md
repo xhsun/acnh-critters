@@ -10,7 +10,7 @@ _Note: The critter information are extracted from [Animal Crossing Wiki](https:/
 
 ## Run the project locally
 
-Since this application is an [Angular](https://angular.io/) application, make sure you have [Node.js](https://nodejs.org/en/) version 12+ installed in your machine. Then run `npm install` to install all the necessary packages. Once all packages are installed, run `npm start` for the dev server, which will be available at `http://localhost:4200/`.
+Since this application is an [Angular](https://angular.io/) application, make sure you have [Node.js](https://nodejs.org/en/) version 18+ installed in your machine. Then run `npm install` to install all the necessary packages. Once all packages are installed, run `npm start` for the dev server, which will be available at `http://localhost:4200/`.
 
 ## Contributing
 
