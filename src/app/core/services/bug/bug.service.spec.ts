@@ -2,7 +2,7 @@ import { createServiceFactory, SpectatorService, SpyObject } from '@ngneat/spect
 import { BugService } from './bug.service';
 import { BugApiService } from '../bug-api/bug-api.service';
 import { TimeOptionsService } from '../time-options/time-options.service';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import TimeOption from '../../models/time-option.model';
 import { Bug } from '../../models/bug.model';
@@ -29,7 +29,7 @@ describe('BugService', () => {
 
   describe('bug', () => {
     it('should set options subscription', (done) => {
-      const inputOptions = new TimeOption(faker.random.number(), true);
+      const inputOptions = new TimeOption(faker.datatype.number(), true);
       const expected = [{ name: faker.random.word() } as Bug];
 
       mockOptions.option.and.returnValue(of(inputOptions));
@@ -47,7 +47,7 @@ describe('BugService', () => {
 
   describe('refresh', () => {
     it('should provide full bug list when flag isAll is set', (done) => {
-      const inputOptions = new TimeOption(faker.random.number(), true);
+      const inputOptions = new TimeOption(faker.datatype.number(), true);
       const expected = [{ name: faker.random.word() } as Bug];
 
       mockOptions.option.and.returnValue(NEVER);
@@ -65,7 +65,7 @@ describe('BugService', () => {
     });
 
     it('should provide bug with correct month', (done) => {
-      const inputMonth = faker.random.number();
+      const inputMonth = faker.datatype.number();
       const inputOptions = new TimeOption(inputMonth);
       const expected = [
         { name: faker.random.word(), month: { north: [inputMonth] } as Month } as Bug,

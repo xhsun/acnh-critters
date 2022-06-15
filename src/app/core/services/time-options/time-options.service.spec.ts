@@ -2,7 +2,7 @@ import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { TimeOptionsService } from './time-options.service';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import TimeOption from '../../models/time-option.model';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 describe('TimeOptionService', () => {
   let service: TimeOptionsService;
@@ -32,7 +32,7 @@ describe('TimeOptionService', () => {
     });
 
     it('should update to the provided option', (done) => {
-      const expected = new TimeOption(faker.random.number());
+      const expected = new TimeOption(faker.datatype.number());
       service.update(expected);
       service.option().subscribe(
         (actual) => {

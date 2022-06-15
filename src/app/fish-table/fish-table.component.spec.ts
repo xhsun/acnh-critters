@@ -1,6 +1,6 @@
 import { Spectator, createComponentFactory, SpyObject } from '@ngneat/spectator';
 import { FishTableComponent } from './fish-table.component';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { MonthStringPipe } from '../core/month-string/month-string.pipe';
 import { MatTableModule } from '@angular/material/table';
@@ -12,9 +12,10 @@ import { FishService } from '../core/services/fish/fish.service';
 import { CritterMappingService } from '../core/services/critter-mapping/critter-mapping.service';
 import { of } from 'rxjs';
 import { Fish } from '../core/models/fish.model';
-import { fakeAsync } from '@angular/core/testing';
+import { fakeAsync, flush } from '@angular/core/testing';
 import { Month } from '../core/models/month.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 describe('FishTableComponent', () => {
   let component: FishTableComponent;
@@ -25,6 +26,7 @@ describe('FishTableComponent', () => {
     declarations: [MonthStringPipe],
     mocks: [FishService, CritterMappingService],
     detectChanges: false,
+    providers:[DatePipe]
   });
   let mockApi: SpyObject<FishService>;
   let mockUtil: SpyObject<CritterMappingService>;
@@ -43,6 +45,7 @@ describe('FishTableComponent', () => {
       mockUtil.getMonthArray.and.returnValue([]);
       spectator.detectChanges();
       expect(component.dataSource.data).toEqual(input);
+      flush();
     }));
 
     it('should update error message when received HttpErrorResponse', fakeAsync(() => {

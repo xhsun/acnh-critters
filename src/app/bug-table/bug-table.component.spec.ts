@@ -1,7 +1,7 @@
 import { Spectator, createComponentFactory, SpyObject } from '@ngneat/spectator';
 
 import { BugTableComponent } from './bug-table.component';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -11,11 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MonthStringPipe } from '../core/month-string/month-string.pipe';
 import { BugService } from '../core/services/bug/bug.service';
 import { CritterMappingService } from '../core/services/critter-mapping/critter-mapping.service';
-import { fakeAsync } from '@angular/core/testing';
+import { fakeAsync, flush } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Month } from '../core/models/month.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Bug } from '../core/models/bug.model';
+import { DatePipe } from '@angular/common';
 
 describe('BugTableComponent', () => {
   let component: BugTableComponent;
@@ -26,6 +27,7 @@ describe('BugTableComponent', () => {
     declarations: [MonthStringPipe],
     mocks: [BugService, CritterMappingService],
     detectChanges: false,
+    providers:[DatePipe]
   });
   let mockApi: SpyObject<BugService>;
   let mockUtil: SpyObject<CritterMappingService>;
@@ -44,6 +46,7 @@ describe('BugTableComponent', () => {
       mockUtil.getMonthArray.and.returnValue([]);
       spectator.detectChanges();
       expect(component.dataSource.data).toEqual(input);
+      flush();
     }));
 
     it('should update error message when received HttpErrorResponse', fakeAsync(() => {

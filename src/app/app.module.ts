@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent, HeaderComponent],
@@ -41,6 +42,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     }),
   ],
   providers: [
+    DatePipe,
     { provide: FISH_URL, useValue: 'https://www.xhsun.me/acnh-api/data/v1/fish.json' },
     { provide: BUG_URL, useValue: 'https://www.xhsun.me/acnh-api/data/v1/bug.json' },
   ],
