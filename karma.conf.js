@@ -1,17 +1,18 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function (config) {
-  config.set({
+export default function (config) {
+  const options = {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require( 'karma-coverage'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-junit-reporter'),
+      require('karma-sonarqube-unit-reporter'),
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -21,7 +22,20 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: 'reports/ut_report.xml',
+      overrideTestDescription: true,
+      testPaths: ['src'],
+      testFilePattern: '.spec.ts',
+      useBrowserName: false,
+    },
+    junitReporter: {
+      outputDir: 'junit', // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'junit.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      useBrowserName: false, // add browser name to report and classes names
+    },
+    reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -29,5 +43,15 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true
-  });
+  };
+
+  if (process.env.CI) {
+    // Prepare test results for Datadog and SonarQube
+    options.reporters.push('junit', 'sonarqubeUnit');
+  } else {
+    // Show the test results on Karma's debug.html page when running locally
+    options.reporters.push('kjhtml');
+  }
+
+  config.set(options);
 };
