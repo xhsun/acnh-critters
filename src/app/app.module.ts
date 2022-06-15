@@ -21,9 +21,10 @@ import { HeaderComponent } from './header/header.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DatePipe } from '@angular/common';
+import { DeepSeaTableComponent } from './deep-sea-table/deep-sea-table.component';
 
 @NgModule({
-  declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent, HeaderComponent],
+  declarations: [AppComponent, FishTableComponent, MonthStringPipe, BugTableComponent, HeaderComponent, DeepSeaTableComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
