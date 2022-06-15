@@ -11,7 +11,6 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
-      require('karma-junit-reporter'),
       require('karma-sonarqube-unit-reporter'),
     ],
     client: {
@@ -30,11 +29,6 @@ module.exports = function (config) {
       testFilePattern: '.spec.ts',
       useBrowserName: false,
     },
-    junitReporter: {
-      outputDir: 'junit', // results will be saved as $outputDir/$browserName.xml
-      outputFile: 'junit.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
-      useBrowserName: false, // add browser name to report and classes names
-    },
     reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
@@ -46,8 +40,8 @@ module.exports = function (config) {
   };
 
   if (process.env.CI) {
-    // Prepare test results for Datadog and SonarQube
-    options.reporters.push('junit', 'sonarqubeUnit');
+    // Prepare test results for SonarQube
+    options.reporters.push('sonarqubeUnit');
   } else {
     // Show the test results on Karma's debug.html page when running locally
     options.reporters.push('kjhtml');
