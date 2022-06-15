@@ -1,14 +1,14 @@
-<div *ngIf="this.fishError.length < 1 && this.dataSource.data.length > 0; else error_message">
+<div *ngIf="this.error.length < 1 && this.dataSource.data.length > 0; else error_message">
   <mat-form-field class="search-table-form">
     <mat-label>Search table</mat-label>
-    <input matInput (keyup)="this.filter($event.target.value)" placeholder="Sea Bass" />
+    <input matInput (keyup)="this.filter($event.target.value)" placeholder="Seaweed" />
   </mat-form-field>
-  <table mat-table [dataSource]="dataSource" matSort aria-label="Animal Crossing Fishes">
+  <table mat-table [dataSource]="dataSource" matSort aria-label="Animal Crossing Deep Sea Creatures">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let fish">
-        {{ fish.name }}
-        <mat-icon class="leaving-soon-icon" *ngIf="this.isLastChance(fish)" matTooltip="Not available next month">
+      <td mat-cell *matCellDef="let creature">
+        {{ creature.name }}
+        <mat-icon class="leaving-soon-icon" *ngIf="this.isLastChance(creature)" matTooltip="Not available next month">
           new_releases
         </mat-icon>
       </td>
@@ -16,27 +16,27 @@
 
     <ng-container matColumnDef="shadowSize">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Shadow Size</th>
-      <td mat-cell *matCellDef="let fish">{{ fish.shadowSize }}</td>
+      <td mat-cell *matCellDef="let creature">{{ creature.shadowSize }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="location">
+    <ng-container matColumnDef="swimmingPattern">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
-      <td mat-cell *matCellDef="let fish">{{ fish.location }}</td>
+      <td mat-cell *matCellDef="let creature">{{ creature.swimmingPattern }}</td>
     </ng-container>
 
     <ng-container matColumnDef="time">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-      <td mat-cell *matCellDef="let fish">{{ fish.time }}</td>
+      <td mat-cell *matCellDef="let creature">{{ creature.time }}</td>
     </ng-container>
 
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-      <td mat-cell *matCellDef="let fish">{{ fish.price }}</td>
+      <td mat-cell *matCellDef="let creature">{{ creature.price }}</td>
     </ng-container>
 
     <ng-container matColumnDef="month">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
-      <td mat-cell *matCellDef="let fish">{{ this.monthArray(fish) | monthString }}</td>
+      <td mat-cell *matCellDef="let creature">{{ this.monthArray(creature) | monthString }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
@@ -45,5 +45,5 @@
 </div>
 
 <ng-template #error_message>
-  <p class="error">{{ this.fishError }}</p>
+  <p class="error">{{ this.error }}</p>
 </ng-template>
