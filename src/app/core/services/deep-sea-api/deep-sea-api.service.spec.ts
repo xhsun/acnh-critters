@@ -25,7 +25,7 @@ describe('DeepSeaApiService', () => {
     it('should cache API data', (done) => {
       const expected = [{ name: faker.random.word() } as DeepSea];
 
-      service.fish().subscribe(
+      service.deepSeaCreature().subscribe(
         (actual) => {
           expect(actual).toEqual(expected);
           done();
@@ -38,7 +38,7 @@ describe('DeepSeaApiService', () => {
     });
 
     it('should provide error', (done) => {
-      service.fish().subscribe(
+      service.deepSeaCreature().subscribe(
         (actual) => {
           expect(actual).toBeInstanceOf(HttpErrorResponse);
           done();

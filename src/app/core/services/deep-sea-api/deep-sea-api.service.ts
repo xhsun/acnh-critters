@@ -22,7 +22,7 @@ export class DeepSeaApiService {
    * Observable created from ReplaySubject of the deep sea creature list
    */
   /* istanbul ignore next */
-  fish(): Observable<DeepSea[]> {
+  deepSeaCreature(): Observable<DeepSea[]> {
     if (this.shouldUpdate) {
       this.shouldUpdate = false;
       this.update();
