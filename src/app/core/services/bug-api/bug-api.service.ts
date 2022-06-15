@@ -37,12 +37,11 @@ export class BugApiService {
    * Get the bug list from API endpoint
    */
   update() {
-    return this.http.get<Bug[]>(`${this.url}`).subscribe(
-      (s) => this.bugSubject.next(s),
-      (err) => {
+    return this.http.get<Bug[]>(`${this.url}`).subscribe({
+      next: (bugs)=> this.bugSubject.next(bugs),
+      error: (err)=>{
         this.logger.error(`BugApiService.update: Unable to retrieve the bug list due to `, err);
         this.bugSubject.next(err);
-      }
-    );
+    }});
   }
 }

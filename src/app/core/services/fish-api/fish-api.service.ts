@@ -37,12 +37,11 @@ export class FishApiService {
    * Get the fish list from API endpoint
    */
   update() {
-    return this.http.get<Fish[]>(`${this.url}`).subscribe(
-      (s) => this.fishSubject.next(s),
-      (err) => {
+    return this.http.get<Fish[]>(`${this.url}`).subscribe({
+      next: (bugs)=> this.fishSubject.next(bugs),
+      error: (err)=>{
         this.logger.error(`FishApiService.update: Unable to retrieve the fish list due to `, err);
         this.fishSubject.next(err);
-      }
-    );
+    }});
   }
 }
