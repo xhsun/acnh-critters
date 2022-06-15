@@ -247,8 +247,8 @@ $altTheme: mat.define-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons', 'Material Icons';
+  font-family: 'Material Icons', 'Material Icons', sans-serif;
   .mat-badge-content {
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
   }
 }
